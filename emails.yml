@@ -1,0 +1,328 @@
+# Cheaper Than Therapy - shared email templates
+# This file is meant to be shared across team members via git.
+# Personal vars (MyName, MySignature) are defined in each person's base.yml.
+
+matches:
+  - trigger: ":refpart"
+    label: "Refund: Partial"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      Happy to help with your request. We can provide a cash refund for {{form1.TicketCount}} tickets at the box office. Please arrive by {{arrival_time}} on {{form1.ShowDate}} so that we can help with your refund. The bar will be open at {{bar_time}}. See you soon!
+
+      {{MySignature}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
+            Show date (e.g., Fri, Oct 10): [[ShowDate]]
+            Show time: [[ShowTime]]
+            Tickets to refund: [[TicketCount]]
+          fields:
+            ShowTime:
+              type: list
+              values:
+                - "7:45pm"
+                - "9:45pm"
+      - name: arrival_time
+        type: shell
+        params:
+          cmd: "if [ '{{form1.ShowTime}}' = '7:45pm' ]; then printf 7:15pm; else printf 9:15pm; fi"
+      - name: bar_time
+        type: shell
+        params:
+          cmd: "if [ '{{form1.ShowTime}}' = '7:45pm' ]; then printf 7:00pm; else printf 9:00pm; fi"
+
+  - trigger: ":refdeny"
+    label: "Refund: Denied"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      Our policy honors refund requests submitted at least 24 hours before the show for which the tickets were purchased begins. Any requests received less than 24 hours before and up until one hour before the show starts can be transferred to a future show. (Changes may not be requested for tickets an hour before the show begins since they are considered used at that point.)
+
+      We will hang onto your unused tickets for a future show of your choice. Please email us at least 48 hours before the show date and time you'd like to see, and we will send you a confirmation.
+
+      {{MySignature}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
+
+  - trigger: ":xfrtbd"
+    label: "Transfer: TBD"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      Happy to help with your request. We will hang onto your unused tickets for a future show of your choice. Please email us at least 48 hours before the show date and time you'd like to see, and we will send you a confirmation.
+
+      {{MySignature}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
+
+  - trigger: ":xfrconf"
+    label: "Transfer: Confirmed"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      Happy to help with your request. I’ve transferred your reservation to the {{form1.ShowTime}} show on {{form1.ShowDate}}. Please check in at the box office between {{box_hours}} with your name. No need to show proof of transfer. The bar will be open at {{bar_time}}. See you soon!
+
+      {{MySignature}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
+            Show date (e.g., Fri, Oct 10): [[ShowDate]]
+            Show time: [[ShowTime]]
+          fields:
+            ShowTime:
+              type: list
+              values:
+                - "7:45pm"
+                - "9:45pm"
+      - name: box_hours
+        type: shell
+        params:
+          cmd: "if [ ‘{{form1.ShowTime}}’ = ‘7:45pm’ ]; then printf 7:00-7:45pm; else printf 9:00-9:45pm; fi"
+      - name: bar_time
+        type: shell
+        params:
+          cmd: "if [ ‘{{form1.ShowTime}}’ = ‘7:45pm’ ]; then printf 7:00pm; else printf 9:00pm; fi"
+
+  - trigger: ":xfrlate"
+    label: "Transfer: Late request"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      So here's the thing: as a small business, your original reservation was to a sold-out show. That means other customers who wanted to come were turned away because we held your seat. Our transfer and refund policy is pretty clear and generous: we offer full refunds with at least 24 hours' notice and transfers with at least 1 hour's notice before showtime. A request after that (like yours) is, unfortunately, well outside that window.
+
+      That said, we are very understanding human beings over here, so we're happy to hang onto your unused ticket to apply to any Wednesday, Thursday, or Sunday show as a one-time courtesy. Just know that we won't be able to make exceptions going forward. And you are welcome to express your gratitude by drinking heavily at our bar. ;)
+
+      Please email us at least 48 hours before the Wednesday, Thursday, or Sunday show you'd like to attend, and we'll reply with a confirmation of your transfer based on seat availability.
+
+      {{MySignature}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
+
+  - trigger: ":xfrfriend"
+    label: "Transfer: Friend"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      Happy to help with your request. Your friend can check in using your name between {{checkin_time}} at the box office. The bar will be open at {{bar_time}}. Please let me know if you have any other questions.
+
+      {{MySignature}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
+            Show time: [[ShowTime]]
+          fields:
+            ShowTime:
+              type: list
+              values:
+                - "7:45pm"
+                - "9:45pm"
+      - name: checkin_time
+        type: shell
+        params:
+          cmd: "if [ '{{form1.ShowTime}}' = '7:45pm' ]; then printf 7:00-7:45pm; else printf 9:00-9:45pm; fi"
+      - name: bar_time
+        type: shell
+        params:
+          cmd: "if [ '{{form1.ShowTime}}' = '7:45pm' ]; then printf 7:00pm; else printf 9:00pm; fi"
+
+  - trigger: ":pmtfail"
+    label: "Failed purchase: Subject line"
+    replace: "Quick fix for your Cheaper Than Therapy tickets"
+
+  - trigger: ":pmtfail"
+    label: "Failed purchase: Message body"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      I noticed your ticket purchase for the {{form1.ShowTime}} show on {{form1.ShowDate}} didn't go through. This usually happens when a card number or CVV gets mistyped, or occasionally a card needs to be authorized for the purchase. Trying again or using a different payment method should do the trick.
+
+      Let me know if you run into any issues.
+
+      {{MySignature}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
+            Show date (e.g., Sat, Mar 28): [[ShowDate]]
+            Show time: [[ShowTime]]
+          fields:
+            ShowTime:
+              type: list
+              values:
+                - "7:45pm"
+                - "9:45pm"
+
+  - trigger: ":b10policy"
+    label: "Buy 10 get 1: Policy"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      We’d be happy to give you one free ticket for every 10 tickets you purchase. (This offer is valid only for 10+ tickets purchased in a single transaction, not for separately purchased tickets in smaller numbers.) Once you have made your group purchase, please let us know. We will then add the appropriate number of complimentary tickets under your name for the same show as your reservation. If you have any questions, please feel free to reach out.
+
+      {{MySignature}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
+
+  - trigger: ":b10confirm"
+    label: "Buy 10 get 1: Confirmation"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      I have confirmed that you reserved {{form1.TicketCount}} tickets to the {{form1.ShowTime}} show on {{form1.ShowDate}} and have added {{comp_tickets}} complimentary tickets under your name.
+
+      Also, for large groups like yours, we recommend checking in between {{checkin_time}} so that everyone has a chance to get their physical tickets from the box office, visit the restrooms (on the first and second floors only, not the basement), and order their first round of drinks before the rush in the last 15 minutes before showtime. Please let me know if you have any further questions. We look forward to hosting your group!
+
+      {{MySignature}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
+            Show date (e.g., Fri, Oct 10): [[ShowDate]]
+            Show time: [[ShowTime]]
+            Tickets purchased: [[TicketCount]]
+          fields:
+            ShowTime:
+              type: list
+              values:
+                - "7:45pm"
+                - "9:45pm"
+      - name: comp_tickets
+        type: shell
+        params:
+          cmd: "echo $(({{form1.TicketCount}} / 10))"
+      - name: checkin_time
+        type: shell
+        params:
+          cmd: "if [ '{{form1.ShowTime}}' = '7:45pm' ]; then printf 7:00-7:30pm; else printf 9:00-9:30pm; fi"
+
+  - trigger: ":special"
+    label: "Special occasion"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      We love celebrating {{form1.Occasion}}s! Please see a co-producer after the show you see for a surprise. (You will know who they are after seeing the show.) See you soon!
+
+      {{MySignature}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
+            Occasion (e.g., birthday, anniversary): [[Occasion]]
+
+  - trigger: ":access"
+    label: "Accessibility needs"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      We'd be happy to accommodate. I have notified the box office and co-producers to expect you between {{checkin_time}} so that they can help you with the elevator and seat you near the exit. Please feel free to let me know if there's anything else we can do to make your experience comfortable. See you soon!
+
+      {{MySignature}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
+            Show time: [[ShowTime]]
+          fields:
+            ShowTime:
+              type: list
+              values:
+                - "7:45pm"
+                - "9:45pm"
+      - name: checkin_time
+        type: shell
+        params:
+          cmd: "if [ '{{form1.ShowTime}}' = '7:45pm' ]; then printf 7:00-7:30pm; else printf 9:00-9:30pm; fi"
+
+  - trigger: ":polage"
+    label: "Policy: Age"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      Because of the nature of the content of our show, we highly recommend audience members to be 18 years old and up. However, parents accompanying their own children can decide whether it is appropriate. The co-producers reserve the right to make the final call on a case by case basis.
+
+      {{MySignature}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
+
+  - trigger: ":polbags"
+    label: "Policy: Bags"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      We do allow bags to be brought in. As long as it can be stowed at your theater seat without causing you or others discomfort, you can keep it with you during the show. Otherwise, we'd be happy to secure it backstage until the show is over. Please let one of the staff know if that's the case. See you soon!
+
+      {{MySignature}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
+
+  - trigger: ":polanim"
+    label: "Policy: Animals"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      We welcome service animals. Otherwise, please leave your furry friend at home.
+
+      {{MySignature}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
+
+  - trigger: ":perffreq"
+    label: "Performers: Lineup change frequency"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      We're glad to hear that you enjoyed your recent experience at Cheaper Than Therapy! The line-up changes quite frequently. Without knowing when you plan to visit again, it's hard to say with certainty how different the line-up will be, but a monthly cadence on a different day of the week would likely maximize your chances of seeing a different set of comedians. Hope to see you again soon!
+
+      {{MySignature}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
