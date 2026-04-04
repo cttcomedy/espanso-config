@@ -33,7 +33,13 @@
          cmd: "printf 'Thank you,\n{{MyName}} @ Cheaper Than Therapy'"
    ```
 
-5. **Increase the clipboard threshold.** Open the file `~/Library/Application Support/espanso/config/default.yml` in a text editor, and add this line at the bottom:
+5. **Increase the clipboard threshold.** Open Finder, press **Cmd+Shift+G**, and paste this path:
+
+   ```
+   ~/Library/Application Support/espanso/config/
+   ```
+   
+   Open `default.yml` in any text editor, and add this line at the bottom:
 
    ```yaml
    clipboard_threshold: 10000
