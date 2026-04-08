@@ -68,6 +68,7 @@
 
 | Type this | What it does |
 |-----------|-------------|
+| `:sig` | Signature block only |
 | `:refpart` | Refund: Partial |
 | `:refdeny` | Refund: Denied |
 | `:xfrtbd` | Transfer: TBD (date needed) |

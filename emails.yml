@@ -3,6 +3,10 @@
 # Personal vars (MyName, MySignature) are defined in each person's base.yml.
 
 matches:
+  - trigger: ":sig"
+    label: "Signature block"
+    replace: "{{MySignature}}"
+
   - trigger: ":refpart"
     label: "Refund: Partial"
     replace: |
