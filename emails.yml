@@ -1,11 +1,17 @@
 # Cheaper Than Therapy - shared email templates
 # This file is meant to be shared across team members via git.
-# Personal vars (MyName, MySignature) are defined in each person's local base.yml.
+# Personal vars (MyFirstName) are defined in each person's local base.yml.
+
+global_vars:
+  - name: MySignatureCTT
+    type: shell
+    params:
+      cmd: "printf 'Thank you,\n{{MyFirstName}} @ Cheaper Than Therapy'"
 
 matches:
-  - trigger: ":sig"
-    label: "Signature block"
-    replace: "{{MySignature}}"
+  - trigger: ":sigctt"
+    label: "Signature: CTT"
+    replace: "{{MySignatureCTT}}"
 
   - trigger: ":refpart"
     label: "Refund: Partial"
@@ -14,7 +20,7 @@ matches:
 
       Happy to help with your request. We can provide a cash refund for {{form1.TicketCount}} tickets at the box office. Please arrive by {{arrival_time}} on {{form1.ShowDate}} so that we can help with your refund. The bar will be open at {{bar_time}}. See you soon!
 
-      {{MySignature}}
+      {{MySignatureCTT}}
     vars:
       - name: form1
         type: form
@@ -48,7 +54,7 @@ matches:
 
       We will hang onto your unused tickets for a future show of your choice. Please email us at least 48 hours before the show date and time you'd like to see, and we will send you a confirmation.
 
-      {{MySignature}}
+      {{MySignatureCTT}}
     vars:
       - name: form1
         type: form
@@ -63,7 +69,7 @@ matches:
 
       Happy to help with your request. We will hang onto your unused tickets for a future show of your choice. Please email us at least 48 hours before the show date and time you'd like to see, and we will send you a confirmation.
 
-      {{MySignature}}
+      {{MySignatureCTT}}
     vars:
       - name: form1
         type: form
@@ -78,7 +84,7 @@ matches:
 
       Happy to help with your request. I’ve transferred your reservation to the {{form1.ShowTime}} show on {{form1.ShowDate}}. Please check in at the box office between {{box_hours}} with your name. No need to show proof of transfer. The bar will be open at {{bar_time}}. See you soon!
 
-      {{MySignature}}
+      {{MySignatureCTT}}
     vars:
       - name: form1
         type: form
@@ -113,7 +119,7 @@ matches:
 
       Please email us at least 48 hours before the Wednesday, Thursday, or Sunday show you'd like to attend, and we'll reply with a confirmation of your transfer based on seat availability.
 
-      {{MySignature}}
+      {{MySignatureCTT}}
     vars:
       - name: form1
         type: form
@@ -128,7 +134,7 @@ matches:
 
       Happy to help with your request. Your friend can check in using your name between {{checkin_time}} at the box office. The bar will be open at {{bar_time}}. Please let me know if you have any other questions.
 
-      {{MySignature}}
+      {{MySignatureCTT}}
     vars:
       - name: form1
         type: form
@@ -164,7 +170,7 @@ matches:
 
       Let me know if you run into any issues.
 
-      {{MySignature}}
+      {{MySignatureCTT}}
     vars:
       - name: form1
         type: form
@@ -187,7 +193,7 @@ matches:
 
       We’d be happy to give you one free ticket for every 10 tickets you purchase. (This offer is valid only for 10+ tickets purchased in a single transaction, not for separately purchased tickets in smaller numbers.) Once you have made your group purchase, please let us know. We will then add the appropriate number of complimentary tickets under your name for the same show as your reservation. If you have any questions, please feel free to reach out.
 
-      {{MySignature}}
+      {{MySignatureCTT}}
     vars:
       - name: form1
         type: form
@@ -204,7 +210,7 @@ matches:
 
       Also, for large groups like yours, we recommend checking in between {{checkin_time}} so that everyone has a chance to get their physical tickets from the box office, visit the restrooms (on the first and second floors only, not the basement), and order their first round of drinks before the rush in the last 15 minutes before showtime. Please let me know if you have any further questions. We look forward to hosting your group!
 
-      {{MySignature}}
+      {{MySignatureCTT}}
     vars:
       - name: form1
         type: form
@@ -236,7 +242,7 @@ matches:
 
       We love celebrating {{form1.Occasion}}s! Please see a co-producer after the show you see for a surprise. (You will know who they are after seeing the show.) See you soon!
 
-      {{MySignature}}
+      {{MySignatureCTT}}
     vars:
       - name: form1
         type: form
@@ -252,7 +258,7 @@ matches:
 
       We'd be happy to accommodate. I have notified the box office and co-producers to expect you between {{checkin_time}} so that they can help you with the elevator and seat you near the exit. Please feel free to let me know if there's anything else we can do to make your experience comfortable. See you soon!
 
-      {{MySignature}}
+      {{MySignatureCTT}}
     vars:
       - name: form1
         type: form
@@ -278,7 +284,7 @@ matches:
 
       Because of the nature of the content of our show, we highly recommend audience members to be 18 years old and up. However, parents accompanying their own children can decide whether it is appropriate. The co-producers reserve the right to make the final call on a case by case basis.
 
-      {{MySignature}}
+      {{MySignatureCTT}}
     vars:
       - name: form1
         type: form
@@ -293,7 +299,7 @@ matches:
 
       We do allow bags to be brought in. As long as it can be stowed at your theater seat without causing you or others discomfort, you can keep it with you during the show. Otherwise, we'd be happy to secure it backstage until the show is over. Please let one of the staff know if that's the case. See you soon!
 
-      {{MySignature}}
+      {{MySignatureCTT}}
     vars:
       - name: form1
         type: form
@@ -308,7 +314,7 @@ matches:
 
       We welcome service animals. Otherwise, please leave your furry friend at home.
 
-      {{MySignature}}
+      {{MySignatureCTT}}
     vars:
       - name: form1
         type: form
@@ -323,7 +329,7 @@ matches:
 
       We're glad to hear that you enjoyed your recent experience at Cheaper Than Therapy! The line-up changes quite frequently. Without knowing when you plan to visit again, it's hard to say with certainty how different the line-up will be, but a monthly cadence on a different day of the week would likely maximize your chances of seeing a different set of comedians. Hope to see you again soon!
 
-      {{MySignature}}
+      {{MySignatureCTT}}
     vars:
       - name: form1
         type: form

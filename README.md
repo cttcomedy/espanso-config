@@ -19,18 +19,14 @@
    ~/Library/Application Support/espanso/match
    ```
 
-4. **Create a file called `base.yml`** in that folder with the following content (replace `YourName` with your first name):
+4. **Create a file called `base.yml`** in that folder with the following content (replace `YourFirstName` with your first name):
 
    ```yaml
    global_vars:
-     - name: MyName
+     - name: MyFirstName
        type: echo
        params:
-         echo: YourName
-     - name: MySignature
-       type: shell
-       params:
-         cmd: "printf 'Thank you,\n{{MyName}} @ Cheaper Than Therapy'"
+         echo: YourFirstName
    ```
 
 5. **Increase the clipboard threshold.** Open Finder, press **Cmd+Shift+G**, and paste this path:
@@ -68,7 +64,7 @@
 
 | Type this | What it does |
 |-----------|-------------|
-| `:sig` | Signature block only |
+| `:sigctt` | Signature block only |
 | `:refpart` | Refund: Partial |
 | `:refdeny` | Refund: Denied |
 | `:xfrtbd` | Transfer: TBD (date needed) |
