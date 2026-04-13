@@ -1,6 +1,6 @@
 # Cheaper Than Therapy - shared email templates
 # This file is meant to be shared across team members via git.
-# Personal vars (MyName, MySignature) are defined in each person's base.yml.
+# Personal vars (MyName, MySignature) are defined in each person's local base.yml.
 
 matches:
   - trigger: ":sig"

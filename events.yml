@@ -1,0 +1,61 @@
+# Cheaper Than Therapy - shared event templates
+# This file is meant to be shared across team members via git.
+# Personal vars (MyName, MySignature) are defined in each person's local base.yml.
+
+matches:
+  - trigger: "gmbwkdy"
+    label: "GMB weekday: Event title"
+    replace: "Cheaper Than Therapy, Stand-up Comedy: {{form1.ShowDate}}"
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Show date (e.g., Wed, Mar 3): [[ShowDate]]
+
+  - trigger: "gmbwknd"
+    label: "GMB weekend: Event title"
+    replace: "Cheaper Than Therapy, Stand-up Comedy: {{form1.ShowDate}} @ {{form1.ShowTime}}"
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Show date (e.g., Fri, May 5): [[ShowDate]]
+            Show time: [[ShowTime]]
+          fields:
+            ShowTime:
+              type: list
+              values:
+                - "7:45pm"
+                - "9:45pm"
+
+  - trigger: "gmbsun"
+    label: "GMB Sunday: Event title"
+    replace: "Cheaper Than Therapy: Sunday FUNday, {{form1.ShowDate}}"
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Show date (e.g., Jul 7): [[ShowDate]]
+
+  - trigger: "gmbwed"
+    label: "GMB Wed: Event description"
+    replace: "Get through the rest of your work week with stand-up comedy at Cheaper Than Therapy on Wednesday night."
+
+  - trigger: "gmbthu"
+    label: "GMB Thu: Event description"
+    replace: "Kickstart your weekend with San Francisco's favorite stand-up comics, great company, and craft drinks."
+
+  - trigger: "gmbwknd"
+    label: "GMB weekend: Event description"
+    replace: "Enjoy your weekend with San Francisco's favorite stand-up comics, great company, and craft drinks."
+
+  - trigger: "gmbsun"
+    label: "GMB Sun: Event description"
+    replace: "Wrap up your weekend with San Francisco's favorite stand-up comics, great company, and craft drinks."
+
+  - trigger: ":gmb"
+    label: "GMB UTM params"
+    replace: "?utm_source=GMB&utm_medium=organic&utm_campaign=posts"
