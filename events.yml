@@ -1,6 +1,5 @@
 # Cheaper Than Therapy - shared event templates
 # This file is meant to be shared across team members via git.
-# Personal vars (MyName, MySignature) are defined in each person's local base.yml.
 
 matches:
   - trigger: "gmbwkdy"
