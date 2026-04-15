@@ -18,7 +18,7 @@ matches:
     replace: |
       Hi, {{form1.CustomerName}}:
 
-      Happy to help with your request. We can provide a cash refund for {{form1.TicketCount}} tickets at the box office. Please arrive by {{arrival_time}} on {{form1.ShowDate}} so that we can help with your refund. The bar will be open at {{bar_time}}. See you soon!
+      Happy to help with your request. We can provide a cash refund for {{refund_tickets_phrase}} at the box office. Please arrive by {{arrival_time}} on {{form1.ShowDate}} so that we can help with your refund. The bar will be open at {{bar_time}}. See you soon!
 
       {{MySignatureCTT}}
     vars:
@@ -36,6 +36,10 @@ matches:
               values:
                 - "7:45pm"
                 - "9:45pm"
+      - name: refund_tickets_phrase
+        type: shell
+        params:
+          cmd: "n={{form1.TicketCount}}; if [ $n -eq 1 ]; then printf '1 ticket'; else printf '%d tickets' $n; fi"
       - name: arrival_time
         type: shell
         params:
@@ -201,12 +205,12 @@ matches:
           layout: |
             Customer name: [[CustomerName]]
 
-  - trigger: ":b10confirm"
+  - trigger: ":b10conf"
     label: "Buy 10 get 1: Confirmation"
     replace: |
       Hi, {{form1.CustomerName}}:
 
-      I have confirmed that you reserved {{form1.TicketCount}} tickets to the {{form1.ShowTime}} show on {{form1.ShowDate}} and have added {{comp_tickets}} complimentary tickets under your name.
+      I have confirmed that you reserved {{form1.TicketCount}} tickets to the {{form1.ShowTime}} show on {{form1.ShowDate}} and have added {{comp_tickets_phrase}} under your name.
 
       Also, for large groups like yours, we recommend checking in between {{checkin_time}} so that everyone has a chance to get their physical tickets from the box office, visit the restrooms (on the first and second floors only, not the basement), and order their first round of drinks before the rush in the last 15 minutes before showtime. Please let me know if you have any further questions. We look forward to hosting your group!
 
@@ -226,10 +230,10 @@ matches:
               values:
                 - "7:45pm"
                 - "9:45pm"
-      - name: comp_tickets
+      - name: comp_tickets_phrase
         type: shell
         params:
-          cmd: "echo $(({{form1.TicketCount}} / 10))"
+          cmd: "n=$(({{form1.TicketCount}} / 10)); if [ $n -eq 1 ]; then printf '1 complimentary ticket'; else printf '%d complimentary tickets' $n; fi"
       - name: checkin_time
         type: shell
         params:
