@@ -190,7 +190,7 @@ matches:
                 - "7:45pm"
                 - "9:45pm"
 
-  - trigger: ":b10policy"
+  - trigger: ":b10pol"
     label: "Buy 10 get 1: Policy"
     replace: |
       Hi, {{form1.CustomerName}}:
@@ -317,6 +317,23 @@ matches:
       Hi, {{form1.CustomerName}}:
 
       We welcome service animals. Otherwise, please leave your furry friend at home.
+
+      {{MySignatureCTT}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
+
+  - trigger: ":openmic"
+    label: "Open mics in the Bay Area"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      Cheaper Than Therapy is a stand-up comedy showcase, so we don't host open mics. But the Bay Area has a great scene! This community calendar lists mics around town: https://calendar.google.com/calendar/u/0/embed?src=uk1otbe28ekomboq3hugsunrdk@group.calendar.google.com&ctz=America/Los_Angeles
+
+      Hope to see you in the audience at one of our upcoming shows: https://tickets.cttcomedy.com/
 
       {{MySignatureCTT}}
     vars:

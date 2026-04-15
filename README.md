@@ -68,17 +68,18 @@
 | `:refpart` | Refund: Partial |
 | `:refdeny` | Refund: Denied |
 | `:xfrtbd` | Transfer: TBD (date needed) |
-| `:xfrconf` | Transfer: Confirmed |
+| `:xfrconf` | Transfer: Confirmation |
 | `:xfrlate` | Transfer: Late request |
 | `:xfrfriend` | Transfer: Friend pickup |
 | `:pmtfail` | Failed purchase (choose subject line or message body) |
-| `:b10policy` | Buy 10 get 1: Policy |
-| `:b10confirm` | Buy 10 get 1: Confirmation |
+| `:b10pol` | Buy 10 get 1: Policy |
+| `:b10conf` | Buy 10 get 1: Confirmation |
 | `:special` | Special occasion |
 | `:access` | Accessibility needs |
 | `:polage` | Policy: Age |
 | `:polbags` | Policy: Bags |
 | `:polanim` | Policy: Animals |
+| `:openmic` | Open mics in the Bay Area |
 | `:perffreq` | Performers: Lineup change frequency |
 
 ## Troubleshooting
