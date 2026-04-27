@@ -80,6 +80,7 @@
 | `:polbags` | Policy: Bags |
 | `:polanim` | Policy: Animals |
 | `:openmic` | Open mics in the Bay Area |
+| `:perfline` | Performers: Lineup change inquiry |
 | `:perffreq` | Performers: Lineup change frequency |
 
 ## Troubleshooting

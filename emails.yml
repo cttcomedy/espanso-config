@@ -343,6 +343,23 @@ matches:
           layout: |
             Customer name: [[CustomerName]]
 
+  - trigger: ":perfline"
+    label: "Performers: Lineup change inquiry"
+    replace: |
+      Hi, {{form1.CustomerName}}:
+
+      I'm glad to hear that you enjoyed your recent experience at Cheaper Than Therapy! You can find all of our past line-ups by following our Instagram account: https://www.instagram.com/cttcomedy/
+
+      Hope to see you again soon!
+
+      {{MySignatureCTT}}
+    vars:
+      - name: form1
+        type: form
+        params:
+          layout: |
+            Customer name: [[CustomerName]]
+
   - trigger: ":perffreq"
     label: "Performers: Lineup change frequency"
     replace: |
