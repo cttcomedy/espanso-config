@@ -34,8 +34,8 @@ matches:
             ShowTime:
               type: list
               values:
-                - "7:45pm"
-                - "9:45pm"
+                - "7:45 PM"
+                - "9:45 PM"
       - name: refund_tickets_phrase
         type: shell
         params:
@@ -43,11 +43,11 @@ matches:
       - name: arrival_time
         type: shell
         params:
-          cmd: "if [ '{{form1.ShowTime}}' = '7:45pm' ]; then printf 7:15pm; else printf 9:15pm; fi"
+          cmd: "if [ '{{form1.ShowTime}}' = '7:45 PM' ]; then printf '7:15 PM'; else printf '9:15 PM'; fi"
       - name: bar_time
         type: shell
         params:
-          cmd: "if [ '{{form1.ShowTime}}' = '7:45pm' ]; then printf 7:00pm; else printf 9:00pm; fi"
+          cmd: "if [ '{{form1.ShowTime}}' = '7:45 PM' ]; then printf '7:00 PM'; else printf '9:00 PM'; fi"
 
   - trigger: ":refdeny"
     label: "Refund: Denied"
@@ -101,16 +101,16 @@ matches:
             ShowTime:
               type: list
               values:
-                - "7:45pm"
-                - "9:45pm"
+                - "7:45 PM"
+                - "9:45 PM"
       - name: box_hours
         type: shell
         params:
-          cmd: "if [ ‘{{form1.ShowTime}}’ = ‘7:45pm’ ]; then printf 7:00-7:45pm; else printf 9:00-9:45pm; fi"
+          cmd: "if [ ‘{{form1.ShowTime}}’ = ‘7:45 PM’ ]; then printf '7:00-7:45 PM'; else printf '9:00-9:45 PM'; fi"
       - name: bar_time
         type: shell
         params:
-          cmd: "if [ ‘{{form1.ShowTime}}’ = ‘7:45pm’ ]; then printf 7:00pm; else printf 9:00pm; fi"
+          cmd: "if [ ‘{{form1.ShowTime}}’ = ‘7:45 PM’ ]; then printf '7:00 PM'; else printf '9:00 PM'; fi"
 
   - trigger: ":xfrlate"
     label: "Transfer: Late request"
@@ -150,16 +150,16 @@ matches:
             ShowTime:
               type: list
               values:
-                - "7:45pm"
-                - "9:45pm"
+                - "7:45 PM"
+                - "9:45 PM"
       - name: checkin_time
         type: shell
         params:
-          cmd: "if [ '{{form1.ShowTime}}' = '7:45pm' ]; then printf 7:00-7:45pm; else printf 9:00-9:45pm; fi"
+          cmd: "if [ '{{form1.ShowTime}}' = '7:45 PM' ]; then printf '7:00-7:45 PM'; else printf '9:00-9:45 PM'; fi"
       - name: bar_time
         type: shell
         params:
-          cmd: "if [ '{{form1.ShowTime}}' = '7:45pm' ]; then printf 7:00pm; else printf 9:00pm; fi"
+          cmd: "if [ '{{form1.ShowTime}}' = '7:45 PM' ]; then printf '7:00 PM'; else printf '9:00 PM'; fi"
 
   - trigger: ":pmtfail"
     label: "Failed purchase: Subject line"
@@ -187,8 +187,8 @@ matches:
             ShowTime:
               type: list
               values:
-                - "7:45pm"
-                - "9:45pm"
+                - "7:45 PM"
+                - "9:45 PM"
 
   - trigger: ":b10pol"
     label: "Buy 10 get 1: Policy"
@@ -228,8 +228,8 @@ matches:
             ShowTime:
               type: list
               values:
-                - "7:45pm"
-                - "9:45pm"
+                - "7:45 PM"
+                - "9:45 PM"
       - name: comp_tickets_phrase
         type: shell
         params:
@@ -237,7 +237,7 @@ matches:
       - name: checkin_time
         type: shell
         params:
-          cmd: "if [ '{{form1.ShowTime}}' = '7:45pm' ]; then printf 7:00-7:30pm; else printf 9:00-9:30pm; fi"
+          cmd: "if [ '{{form1.ShowTime}}' = '7:45 PM' ]; then printf '7:00-7:30 PM'; else printf '9:00-9:30 PM'; fi"
 
   - trigger: ":special"
     label: "Special occasion"
@@ -274,12 +274,12 @@ matches:
             ShowTime:
               type: list
               values:
-                - "7:45pm"
-                - "9:45pm"
+                - "7:45 PM"
+                - "9:45 PM"
       - name: checkin_time
         type: shell
         params:
-          cmd: "if [ '{{form1.ShowTime}}' = '7:45pm' ]; then printf 7:00-7:30pm; else printf 9:00-9:30pm; fi"
+          cmd: "if [ '{{form1.ShowTime}}' = '7:45 PM' ]; then printf '7:00-7:30 PM'; else printf '9:00-9:30 PM'; fi"
 
   - trigger: ":polage"
     label: "Policy: Age"
